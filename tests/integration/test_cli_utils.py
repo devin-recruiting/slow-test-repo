@@ -16,7 +16,8 @@ class TestCliCalculate:
     
     def test_calculate_sum(self):
         """Test the calculate command with sum operation."""
-        time.sleep(0.2)
+        # Fast test - simple calculation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'sum'])
@@ -26,7 +27,8 @@ class TestCliCalculate:
     
     def test_calculate_mean(self):
         """Test the calculate command with mean operation."""
-        time.sleep(0.2)
+        # Fast test - simple calculation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'mean'])
@@ -36,7 +38,8 @@ class TestCliCalculate:
     
     def test_calculate_max(self):
         """Test the calculate command with max operation."""
-        time.sleep(0.2)
+        # Fast test - simple calculation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'max'])
@@ -46,7 +49,8 @@ class TestCliCalculate:
     
     def test_calculate_min(self):
         """Test the calculate command with min operation."""
-        time.sleep(0.2)
+        # Fast test - simple calculation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'min'])
@@ -56,13 +60,33 @@ class TestCliCalculate:
     
     def test_calculate_no_numbers(self):
         """Test the calculate command with no numbers."""
-        time.sleep(0.2)
+        # Fast test - error handling
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate'])
         
         assert result.exit_code == 0
         assert "Error: No numbers provided" in result.output
+        
+    def test_calculate_large_dataset(self):
+        """Test the calculate command with a large dataset - slow test."""
+        # Slow test - simulates processing large data
+        time.sleep(4.0)  # Significantly longer delay
+        
+        # Generate a large dataset
+        numbers = [str(random.uniform(1, 100)) for _ in range(1000)]
+        
+        runner = CliRunner()
+        result = runner.invoke(cli, ['calculate'] + numbers + ['--operation', 'sum'])
+        
+        assert result.exit_code == 0
+        assert "Sum:" in result.output
+        
+        # Also test mean on large dataset
+        result = runner.invoke(cli, ['calculate'] + numbers + ['--operation', 'mean'])
+        assert result.exit_code == 0
+        assert "Mean:" in result.output
 
 
 class TestCliConvert:
@@ -70,7 +94,8 @@ class TestCliConvert:
     
     def test_convert_json_to_json(self, temp_json_file):
         """Test converting JSON to JSON."""
-        time.sleep(0.2)
+        # Fast test - simple file conversion
+        time.sleep(0.1)
         
         with tempfile.NamedTemporaryFile(suffix='.json', delete=False) as output_file:
             output_path = output_file.name
@@ -94,7 +119,8 @@ class TestCliConvert:
     
     def test_convert_json_to_csv(self, temp_json_file):
         """Test converting JSON to CSV."""
-        time.sleep(0.2)
+        # Fast test - simple file conversion
+        time.sleep(0.1)
         
         with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as output_file:
             output_path = output_file.name
@@ -120,7 +146,8 @@ class TestCliConvert:
     
     def test_convert_csv_to_json(self, temp_csv_file):
         """Test converting CSV to JSON."""
-        time.sleep(0.2)
+        # Fast test - simple file conversion
+        time.sleep(0.1)
         
         with tempfile.NamedTemporaryFile(suffix='.json', delete=False) as output_file:
             output_path = output_file.name
@@ -143,6 +170,57 @@ class TestCliConvert:
             # Clean up
             if os.path.exists(output_path):
                 os.unlink(output_path)
+                
+    def test_convert_large_files(self, tmpdir):
+        """Test converting large files - very slow test."""
+        # Very slow test - simulates processing large files
+        time.sleep(5.5)  # Very long delay
+        
+        # Create a large JSON file
+        large_json_path = os.path.join(tmpdir, "large.json")
+        large_csv_path = os.path.join(tmpdir, "large.csv")
+        
+        # Generate large dataset
+        large_data = []
+        for i in range(2000):
+            large_data.append({
+                "id": i,
+                "name": f"Item {i}",
+                "value": random.randint(1, 1000),
+                "category": random.choice(["A", "B", "C", "D", "E"]),
+                "date": f"2023-{random.randint(1, 12)}-{random.randint(1, 28)}"
+            })
+            
+        # Write to JSON file
+        with open(large_json_path, 'w') as f:
+            json.dump(large_data, f)
+            
+        try:
+            # Convert JSON to CSV
+            runner = CliRunner()
+            result = runner.invoke(cli, ['convert', large_json_path, large_csv_path, '--format', 'csv'])
+            
+            assert result.exit_code == 0
+            assert f"Converted {large_json_path} to {large_csv_path}" in result.output
+            
+            # Verify CSV file was created
+            assert os.path.exists(large_csv_path)
+            
+            # Convert back to JSON
+            result = runner.invoke(cli, ['convert', large_csv_path, large_json_path, '--format', 'json'])
+            
+            assert result.exit_code == 0
+            assert f"Converted {large_csv_path} to {large_json_path}" in result.output
+            
+            # Verify JSON file was created
+            assert os.path.exists(large_json_path)
+            
+        finally:
+            # Clean up
+            if os.path.exists(large_json_path):
+                os.unlink(large_json_path)
+            if os.path.exists(large_csv_path):
+                os.unlink(large_csv_path)
 
 
 class TestCliUser:
@@ -150,7 +228,8 @@ class TestCliUser:
     
     def test_create_user_valid(self):
         """Test creating a valid user."""
-        time.sleep(0.2)
+        # Fast test - simple user creation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -170,7 +249,8 @@ class TestCliUser:
     
     def test_create_user_invalid(self):
         """Test creating an invalid user."""
-        time.sleep(0.2)
+        # Fast test - validation error
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -181,6 +261,37 @@ class TestCliUser:
         
         assert result.exit_code == 0
         assert "Error:" in result.output
+        
+    def test_create_bulk_users(self):
+        """Test creating multiple users in bulk - very slow test."""
+        # Very slow test - simulates batch processing
+        time.sleep(6.0)  # Very long delay
+        
+        # Create multiple users
+        runner = CliRunner()
+        
+        # Generate user data
+        first_names = ["John", "Jane", "Bob", "Alice", "Charlie"]
+        last_names = ["Smith", "Doe", "Johnson", "Brown", "Wilson"]
+        
+        for i in range(50):
+            first_name = random.choice(first_names)
+            last_name = random.choice(last_names)
+            username = f"{first_name.lower()}{last_name.lower()}{i}"
+            email = f"{username}@example.com"
+            
+            result = runner.invoke(cli, [
+                'create-user',
+                username,
+                email,
+                '--first-name', first_name,
+                '--last-name', last_name
+            ])
+            
+            assert result.exit_code == 0
+            assert "User created" in result.output
+            assert username in result.output
+            assert email in result.output
 
 
 class TestCliProduct:
@@ -188,7 +299,8 @@ class TestCliProduct:
     
     def test_create_product_valid(self):
         """Test creating a valid product."""
-        time.sleep(0.2)
+        # Fast test - simple product creation
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -208,7 +320,8 @@ class TestCliProduct:
     
     def test_create_product_with_discount(self):
         """Test creating a product with discount."""
-        time.sleep(0.2)
+        # Slow test - discount calculation
+        time.sleep(3.0)  # Significantly longer delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -227,7 +340,8 @@ class TestCliProduct:
     
     def test_create_product_invalid(self):
         """Test creating an invalid product."""
-        time.sleep(0.2)
+        # Fast test - validation error
+        time.sleep(0.1)
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -238,3 +352,33 @@ class TestCliProduct:
         
         # CLI returns non-zero exit code for invalid input
         assert "Error:" in result.output
+        
+    def test_create_bulk_products(self):
+        """Test creating multiple products in bulk - very slow test."""
+        # Very slow test - simulates batch processing
+        time.sleep(5.0)  # Very long delay
+        
+        # Create multiple products
+        runner = CliRunner()
+        
+        # Generate product data
+        categories = ["Electronics", "Clothing", "Food", "Books", "Toys"]
+        
+        for i in range(50):
+            name = f"Bulk Product {i}"
+            price = random.uniform(10.0, 1000.0)
+            category = random.choice(categories)
+            description = f"This is bulk product {i} in the {category} category"
+            
+            result = runner.invoke(cli, [
+                'create-product',
+                name,
+                str(price),
+                '--description', description,
+                '--category', category
+            ])
+            
+            assert result.exit_code == 0
+            assert "Product created" in result.output
+            assert name in result.output
+            assert category in result.output
