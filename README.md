@@ -26,12 +26,6 @@ For verbose output:
 pytest -v
 ```
 
-Tests will run in parallel by default using pytest-xdist. To run tests sequentially, use:
-
-```bash
-pytest -n 0
-```
-
 To run specific test categories:
 
 ```bash
