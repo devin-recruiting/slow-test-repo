@@ -13,7 +13,7 @@ class TestProcessData:
     
     def test_sum_operation(self, sample_data):
         """Test sum operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         result = process_data(sample_data, operation="sum")
         expected = sum(sample_data)
@@ -22,7 +22,7 @@ class TestProcessData:
     
     def test_mean_operation(self, sample_data):
         """Test mean operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         result = process_data(sample_data, operation="mean")
         expected = sum(sample_data) / len(sample_data)
@@ -31,7 +31,7 @@ class TestProcessData:
     
     def test_max_operation(self, sample_data):
         """Test max operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         result = process_data(sample_data, operation="max")
         expected = max(sample_data)
@@ -40,7 +40,7 @@ class TestProcessData:
     
     def test_min_operation(self, sample_data):
         """Test min operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         result = process_data(sample_data, operation="min")
         expected = min(sample_data)
@@ -49,14 +49,14 @@ class TestProcessData:
     
     def test_invalid_operation(self, sample_data):
         """Test invalid operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         with pytest.raises(ValueError):
             process_data(sample_data, operation="invalid")
     
     def test_with_delay(self, sample_data):
         """Test with delay parameter."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         result = process_data(sample_data, operation="sum", delay=True)
@@ -71,14 +71,14 @@ class TestTransformDataframe:
     
     def test_no_transformations(self, sample_dataframe):
         """Test with no transformations."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         result = transform_dataframe(sample_dataframe)
         pd.testing.assert_frame_equal(result, sample_dataframe)
     
     def test_with_transformations(self, sample_dataframe):
         """Test with transformations."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         # Define some transformations
         def double_numeric(df):
@@ -107,7 +107,7 @@ class TestTransformDataframe:
     
     def test_with_delay(self, sample_dataframe):
         """Test with delay parameter."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         result = transform_dataframe(sample_dataframe, delay=True)
@@ -122,7 +122,7 @@ class TestCleanData:
     
     def test_remove_nulls(self):
         """Test removing null values."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         # Create a dataframe with nulls
         data = {
@@ -139,7 +139,7 @@ class TestCleanData:
     
     def test_remove_duplicates(self):
         """Test removing duplicate rows."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         # Create a dataframe with duplicates
         data = {
@@ -155,7 +155,7 @@ class TestCleanData:
     
     def test_with_delay(self):
         """Test with delay parameter."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = {'A': [1, 2, 3], 'B': [10, 20, 30]}
         df = pd.DataFrame(data)
