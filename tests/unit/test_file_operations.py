@@ -13,7 +13,7 @@ class TestJsonOperations:
     
     def test_read_json_file(self, temp_json_file):
         """Test reading a JSON file."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = read_json_file(temp_json_file)
         
@@ -25,7 +25,7 @@ class TestJsonOperations:
     
     def test_write_json_file(self, tmpdir):
         """Test writing a JSON file."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = [
             {"id": 1, "name": "Test 1", "value": 100},
@@ -43,7 +43,7 @@ class TestJsonOperations:
     
     def test_read_with_delay(self, temp_json_file):
         """Test reading a JSON file with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         data = read_json_file(temp_json_file, delay=True)
@@ -54,7 +54,7 @@ class TestJsonOperations:
     
     def test_write_with_delay(self, tmpdir):
         """Test writing a JSON file with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = [{"id": 1, "name": "Test", "value": 100}]
         filepath = os.path.join(tmpdir, "test_delay.json")
@@ -72,7 +72,7 @@ class TestCsvOperations:
     
     def test_read_csv_file(self, temp_csv_file):
         """Test reading a CSV file."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         rows = read_csv_file(temp_csv_file)
         
@@ -85,7 +85,7 @@ class TestCsvOperations:
     
     def test_write_csv_file(self, tmpdir):
         """Test writing a CSV file."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = [
             ["id", "name", "value"],
@@ -102,7 +102,7 @@ class TestCsvOperations:
     
     def test_read_with_delay(self, temp_csv_file):
         """Test reading a CSV file with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         rows = read_csv_file(temp_csv_file, delay=True)
@@ -113,7 +113,7 @@ class TestCsvOperations:
     
     def test_write_with_delay(self, tmpdir):
         """Test writing a CSV file with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = [
             ["id", "name", "value"],

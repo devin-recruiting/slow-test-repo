@@ -16,7 +16,7 @@ class TestCliCalculate:
     
     def test_calculate_sum(self):
         """Test the calculate command with sum operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'sum'])
@@ -26,7 +26,7 @@ class TestCliCalculate:
     
     def test_calculate_mean(self):
         """Test the calculate command with mean operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'mean'])
@@ -36,7 +36,7 @@ class TestCliCalculate:
     
     def test_calculate_max(self):
         """Test the calculate command with max operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'max'])
@@ -46,7 +46,7 @@ class TestCliCalculate:
     
     def test_calculate_min(self):
         """Test the calculate command with min operation."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate', '1', '2', '3', '4', '5', '--operation', 'min'])
@@ -56,7 +56,7 @@ class TestCliCalculate:
     
     def test_calculate_no_numbers(self):
         """Test the calculate command with no numbers."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, ['calculate'])
@@ -70,7 +70,7 @@ class TestCliConvert:
     
     def test_convert_json_to_json(self, temp_json_file):
         """Test converting JSON to JSON."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         with tempfile.NamedTemporaryFile(suffix='.json', delete=False) as output_file:
             output_path = output_file.name
@@ -94,7 +94,7 @@ class TestCliConvert:
     
     def test_convert_json_to_csv(self, temp_json_file):
         """Test converting JSON to CSV."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as output_file:
             output_path = output_file.name
@@ -120,7 +120,7 @@ class TestCliConvert:
     
     def test_convert_csv_to_json(self, temp_csv_file):
         """Test converting CSV to JSON."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         with tempfile.NamedTemporaryFile(suffix='.json', delete=False) as output_file:
             output_path = output_file.name
@@ -150,7 +150,7 @@ class TestCliUser:
     
     def test_create_user_valid(self):
         """Test creating a valid user."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -170,7 +170,7 @@ class TestCliUser:
     
     def test_create_user_invalid(self):
         """Test creating an invalid user."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -188,7 +188,7 @@ class TestCliProduct:
     
     def test_create_product_valid(self):
         """Test creating a valid product."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -208,7 +208,7 @@ class TestCliProduct:
     
     def test_create_product_with_discount(self):
         """Test creating a product with discount."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [
@@ -227,7 +227,7 @@ class TestCliProduct:
     
     def test_create_product_invalid(self):
         """Test creating an invalid product."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         runner = CliRunner()
         result = runner.invoke(cli, [

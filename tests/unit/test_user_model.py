@@ -11,7 +11,7 @@ class TestUserModel:
     
     def test_init(self):
         """Test User initialization."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         user = User(
             username="testuser",
@@ -29,7 +29,7 @@ class TestUserModel:
     
     def test_to_dict(self, sample_user):
         """Test User to_dict method."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         user_dict = sample_user.to_dict()
         
@@ -42,7 +42,7 @@ class TestUserModel:
     
     def test_from_dict(self):
         """Test User from_dict method."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = {
             "username": "fromdict",
@@ -64,13 +64,13 @@ class TestUserModel:
     
     def test_validate_valid(self, sample_user):
         """Test User validate method with valid data."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         assert sample_user.validate() is True
     
     def test_validate_invalid_username(self):
         """Test User validate method with invalid username."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         user = User(username="ab", email="test@example.com")
         
@@ -81,7 +81,7 @@ class TestUserModel:
     
     def test_validate_invalid_email(self):
         """Test User validate method with invalid email."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         user = User(username="testuser", email="invalid-email")
         
@@ -92,7 +92,7 @@ class TestUserModel:
     
     def test_init_with_delay(self):
         """Test User initialization with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         user = User(
@@ -107,7 +107,7 @@ class TestUserModel:
     
     def test_to_dict_with_delay(self, sample_user):
         """Test User to_dict method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         user_dict = sample_user.to_dict(delay=True)
@@ -118,7 +118,7 @@ class TestUserModel:
     
     def test_from_dict_with_delay(self):
         """Test User from_dict method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         data = {
             "username": "fromdict",
@@ -134,7 +134,7 @@ class TestUserModel:
     
     def test_validate_with_delay(self, sample_user):
         """Test User validate method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(random.uniform(0.125, 0.25))  # Artificial delay
         
         start_time = time.time()
         result = sample_user.validate(delay=True)
