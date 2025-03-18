@@ -14,7 +14,7 @@ from slow_tests_demo.api.app import app, users, products
 @pytest.fixture
 def client():
     """Test client for the Flask app."""
-    time.sleep(0.2)  # Constant artificial delay
+    time.sleep(0.2)
     
     app.config['TESTING'] = True
     with app.test_client() as client:
@@ -26,7 +26,7 @@ class TestApiUsers:
     
     def test_get_users_empty(self, client):
         """Test getting users when there are none."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing users
         users.clear()
@@ -40,7 +40,7 @@ class TestApiUsers:
     
     def test_get_users_with_data(self, client, sample_user):
         """Test getting users when there are some."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing users and add a sample user
         users.clear()
@@ -57,7 +57,7 @@ class TestApiUsers:
     
     def test_get_user_not_found(self, client):
         """Test getting a non-existent user."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         response = client.get('/api/users/nonexistent')
         data = json.loads(response.data)
@@ -67,7 +67,7 @@ class TestApiUsers:
     
     def test_get_user_found(self, client, sample_user):
         """Test getting an existing user."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing users and add a sample user
         users.clear()
@@ -82,7 +82,7 @@ class TestApiUsers:
     
     def test_create_user_valid(self, client):
         """Test creating a valid user."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing users
         users.clear()
@@ -109,7 +109,7 @@ class TestApiUsers:
     
     def test_create_user_invalid(self, client):
         """Test creating an invalid user."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing users
         users.clear()
@@ -135,7 +135,7 @@ class TestApiProducts:
     
     def test_get_products_empty(self, client):
         """Test getting products when there are none."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing products
         products.clear()
@@ -149,7 +149,7 @@ class TestApiProducts:
     
     def test_get_products_with_data(self, client, sample_product):
         """Test getting products when there are some."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing products and add a sample product
         products.clear()
@@ -166,7 +166,7 @@ class TestApiProducts:
     
     def test_get_product_not_found(self, client):
         """Test getting a non-existent product."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         response = client.get('/api/products/nonexistent')
         data = json.loads(response.data)
@@ -176,7 +176,7 @@ class TestApiProducts:
     
     def test_get_product_found(self, client, sample_product):
         """Test getting an existing product."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing products and add a sample product
         products.clear()
@@ -191,7 +191,7 @@ class TestApiProducts:
     
     def test_create_product_valid(self, client):
         """Test creating a valid product."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing products
         products.clear()
@@ -218,7 +218,7 @@ class TestApiProducts:
     
     def test_create_product_invalid(self, client):
         """Test creating an invalid product."""
-        time.sleep(0.2)  # Constant artificial delay
+        time.sleep(0.2)
         
         # Clear any existing products
         products.clear()

@@ -15,14 +15,14 @@ from slow_tests_demo.models.product import Product
 @pytest.fixture(scope="function")
 def sample_data():
     """Fixture providing sample numeric data."""
-    time.sleep(0.2)  # Constant artificial delay
+    time.sleep(0.2)
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 @pytest.fixture(scope="function")
 def sample_dataframe():
     """Fixture providing a sample pandas DataFrame."""
-    time.sleep(0.3)  # Constant artificial delay
+    time.sleep(0.3)
     
     data = {
         'A': [1, 2, 3, 4, 5],
@@ -36,7 +36,7 @@ def sample_dataframe():
 @pytest.fixture(scope="function")
 def sample_user():
     """Fixture providing a sample user."""
-    time.sleep(0.2)  # Constant artificial delay
+    time.sleep(0.2)
     
     return User(
         username="testuser",
@@ -49,7 +49,7 @@ def sample_user():
 @pytest.fixture(scope="function")
 def sample_product():
     """Fixture providing a sample product."""
-    time.sleep(0.2)  # Constant artificial delay
+    time.sleep(0.2)
     
     return Product(
         name="Test Product",
@@ -62,7 +62,7 @@ def sample_product():
 @pytest.fixture(scope="function")
 def temp_json_file():
     """Fixture providing a temporary JSON file."""
-    time.sleep(0.3)  # Constant artificial delay
+    time.sleep(0.3)
     
     data = [
         {"id": 1, "name": "Item 1", "value": 10},
@@ -84,7 +84,7 @@ def temp_json_file():
 @pytest.fixture(scope="function")
 def temp_csv_file():
     """Fixture providing a temporary CSV file."""
-    time.sleep(0.3)  # Constant artificial delay
+    time.sleep(0.3)
     
     with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as f:
         f.write(b"id,name,value\n")
