@@ -3,6 +3,7 @@ import time
 import random
 import json
 import pytest
+import os
 from flask import Flask
 from flask.testing import FlaskClient
 
@@ -14,7 +15,8 @@ from slow_tests_demo.api.app import app, users, products
 @pytest.fixture
 def client():
     """Test client for the Flask app."""
-    time.sleep(0.2)
+    # Fast fixture - basic setup
+    time.sleep(0.1)
     
     app.config['TESTING'] = True
     with app.test_client() as client:
@@ -26,7 +28,8 @@ class TestApiUsers:
     
     def test_get_users_empty(self, client):
         """Test getting users when there are none."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing users
         users.clear()
@@ -40,7 +43,8 @@ class TestApiUsers:
     
     def test_get_users_with_data(self, client, sample_user):
         """Test getting users when there are some."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing users and add a sample user
         users.clear()
@@ -57,7 +61,8 @@ class TestApiUsers:
     
     def test_get_user_not_found(self, client):
         """Test getting a non-existent user."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         response = client.get('/api/users/nonexistent')
         data = json.loads(response.data)
@@ -67,7 +72,8 @@ class TestApiUsers:
     
     def test_get_user_found(self, client, sample_user):
         """Test getting an existing user."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing users and add a sample user
         users.clear()
@@ -82,7 +88,8 @@ class TestApiUsers:
     
     def test_create_user_valid(self, client):
         """Test creating a valid user."""
-        time.sleep(0.2)
+        # Slow test - simulates database operation
+        time.sleep(3.0)  # Significantly longer delay
         
         # Clear any existing users
         users.clear()
@@ -109,7 +116,8 @@ class TestApiUsers:
     
     def test_create_user_invalid(self, client):
         """Test creating an invalid user."""
-        time.sleep(0.2)
+        # Slow test - simulates validation
+        time.sleep(2.5)  # Significantly longer delay
         
         # Clear any existing users
         users.clear()
@@ -128,6 +136,55 @@ class TestApiUsers:
         
         # Check that no user was added
         assert len(users) == 0
+        
+    def test_bulk_user_operations(self, client):
+        """Test bulk user operations - very slow test."""
+        # Very slow test - simulates batch processing
+        time.sleep(6.0)  # Very long delay
+        
+        # Clear any existing users
+        users.clear()
+        
+        # Create multiple users
+        bulk_users = []
+        for i in range(50):
+            user_data = {
+                "username": f"bulkuser{i}",
+                "email": f"bulk{i}@example.com",
+                "first_name": f"Bulk{i}",
+                "last_name": "User"
+            }
+            bulk_users.append(user_data)
+            
+        # Add all users via API
+        for user_data in bulk_users:
+            response = client.post('/api/users', json=user_data)
+            assert response.status_code == 201
+            
+        # Verify all users were added
+        response = client.get('/api/users')
+        data = json.loads(response.data)
+        
+        assert response.status_code == 200
+        assert len(data) == 50
+        
+        # Verify individual users
+        for i in range(50):
+            user_id = None
+            for user in data:
+                if user["username"] == f"bulkuser{i}":
+                    user_id = user["id"]
+                    break
+                    
+            assert user_id is not None
+            
+            # Get individual user
+            response = client.get(f'/api/users/{user_id}')
+            user_data = json.loads(response.data)
+            
+            assert response.status_code == 200
+            assert user_data["username"] == f"bulkuser{i}"
+            assert user_data["email"] == f"bulk{i}@example.com"
 
 
 class TestApiProducts:
@@ -135,7 +192,8 @@ class TestApiProducts:
     
     def test_get_products_empty(self, client):
         """Test getting products when there are none."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing products
         products.clear()
@@ -149,7 +207,8 @@ class TestApiProducts:
     
     def test_get_products_with_data(self, client, sample_product):
         """Test getting products when there are some."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing products and add a sample product
         products.clear()
@@ -166,7 +225,8 @@ class TestApiProducts:
     
     def test_get_product_not_found(self, client):
         """Test getting a non-existent product."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         response = client.get('/api/products/nonexistent')
         data = json.loads(response.data)
@@ -176,7 +236,8 @@ class TestApiProducts:
     
     def test_get_product_found(self, client, sample_product):
         """Test getting an existing product."""
-        time.sleep(0.2)
+        # Fast test - simple API call
+        time.sleep(0.1)
         
         # Clear any existing products and add a sample product
         products.clear()
@@ -191,7 +252,8 @@ class TestApiProducts:
     
     def test_create_product_valid(self, client):
         """Test creating a valid product."""
-        time.sleep(0.2)
+        # Slow test - simulates database operation
+        time.sleep(3.5)  # Significantly longer delay
         
         # Clear any existing products
         products.clear()
@@ -218,7 +280,8 @@ class TestApiProducts:
     
     def test_create_product_invalid(self, client):
         """Test creating an invalid product."""
-        time.sleep(0.2)
+        # Slow test - simulates validation
+        time.sleep(2.0)  # Significantly longer delay
         
         # Clear any existing products
         products.clear()
@@ -237,3 +300,52 @@ class TestApiProducts:
         
         # Check that no product was added
         assert len(products) == 0
+        
+    def test_bulk_product_operations(self, client):
+        """Test bulk product operations - very slow test."""
+        # Very slow test - simulates batch processing
+        time.sleep(5.5)  # Very long delay
+        
+        # Clear any existing products
+        products.clear()
+        
+        # Create multiple products
+        bulk_products = []
+        for i in range(50):
+            product_data = {
+                "name": f"Bulk Product {i}",
+                "price": 10.0 + i,
+                "description": f"Bulk test product {i}",
+                "category": "Bulk"
+            }
+            bulk_products.append(product_data)
+            
+        # Add all products via API
+        for product_data in bulk_products:
+            response = client.post('/api/products', json=product_data)
+            assert response.status_code == 201
+            
+        # Verify all products were added
+        response = client.get('/api/products')
+        data = json.loads(response.data)
+        
+        assert response.status_code == 200
+        assert len(data) == 50
+        
+        # Verify individual products
+        for i in range(50):
+            product_id = None
+            for product in data:
+                if product["name"] == f"Bulk Product {i}":
+                    product_id = product["id"]
+                    break
+                    
+            assert product_id is not None
+            
+            # Get individual product
+            response = client.get(f'/api/products/{product_id}')
+            product_data = json.loads(response.data)
+            
+            assert response.status_code == 200
+            assert product_data["name"] == f"Bulk Product {i}"
+            assert product_data["price"] == 10.0 + i
