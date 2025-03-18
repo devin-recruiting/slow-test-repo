@@ -11,7 +11,7 @@ class TestProductModel:
     
     def test_init(self):
         """Test Product initialization."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         product = Product(
             name="Test Product",
@@ -29,7 +29,7 @@ class TestProductModel:
     
     def test_to_dict(self, sample_product):
         """Test Product to_dict method."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         product_dict = sample_product.to_dict()
         
@@ -42,7 +42,7 @@ class TestProductModel:
     
     def test_from_dict(self):
         """Test Product from_dict method."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         data = {
             "name": "From Dict Product",
@@ -64,13 +64,13 @@ class TestProductModel:
     
     def test_validate_valid(self, sample_product):
         """Test Product validate method with valid data."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         assert sample_product.validate() is True
     
     def test_validate_invalid_name(self):
         """Test Product validate method with invalid name."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         product = Product(name="A", price=99.99)
         
@@ -81,7 +81,7 @@ class TestProductModel:
     
     def test_validate_invalid_price(self):
         """Test Product validate method with invalid price."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         product = Product(name="Test Product", price=-10.0)
         
@@ -92,7 +92,7 @@ class TestProductModel:
     
     def test_apply_discount(self, sample_product):
         """Test Product apply_discount method."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         discounted_price = sample_product.apply_discount(20)
         
@@ -100,7 +100,7 @@ class TestProductModel:
     
     def test_apply_discount_invalid(self, sample_product):
         """Test Product apply_discount method with invalid discount."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         with pytest.raises(ValueError) as excinfo:
             sample_product.apply_discount(110)
@@ -109,7 +109,7 @@ class TestProductModel:
     
     def test_init_with_delay(self):
         """Test Product initialization with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         start_time = time.time()
         product = Product(
@@ -124,7 +124,7 @@ class TestProductModel:
     
     def test_to_dict_with_delay(self, sample_product):
         """Test Product to_dict method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         start_time = time.time()
         product_dict = sample_product.to_dict(delay=True)
@@ -135,7 +135,7 @@ class TestProductModel:
     
     def test_from_dict_with_delay(self):
         """Test Product from_dict method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         data = {
             "name": "From Dict Product",
@@ -151,7 +151,7 @@ class TestProductModel:
     
     def test_validate_with_delay(self, sample_product):
         """Test Product validate method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         start_time = time.time()
         result = sample_product.validate(delay=True)
@@ -162,7 +162,7 @@ class TestProductModel:
     
     def test_apply_discount_with_delay(self, sample_product):
         """Test Product apply_discount method with delay."""
-        time.sleep(random.uniform(0.5, 1.0))  # Artificial delay
+        time.sleep(0.2)  # Constant artificial delay
         
         start_time = time.time()
         discounted_price = sample_product.apply_discount(20, delay=True)
